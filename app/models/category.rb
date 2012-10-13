@@ -4,4 +4,6 @@ class Category
   field :name, type: String
 
   has_many :ads
+
+  validates :name, presence: true
 end

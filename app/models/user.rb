@@ -12,4 +12,5 @@ class User
   has_many :ad_views, :class_name => 'Viewer'
 
   validates :name, :email, presence: true
+  validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 end
