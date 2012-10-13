@@ -8,8 +8,8 @@ class User
   field :phone_number, type: String
   field :address, type: String
 
-  has_many :ads
-  has_many :ad_views, :class_name => 'Viewer'
+  has_many :ads, dependent: :destroy
+  has_many :ad_views, class_name: 'Viewer', dependent: :destroy
 
   validates :name, :email, presence: true
   validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/

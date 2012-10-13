@@ -14,9 +14,10 @@ class Ad
   belongs_to :category
   belongs_to :user
 
-  has_many :images
+  has_many :images, dependent: :destroy
   has_many :tags
-  has_many :views, :class_name => 'Viewer'
+  has_many :views, class_name: 'Viewer', dependent: :destroy
 
-  validates :description, :price, presence: true
+  validates :description, :price, :user, :category, presence: true
+  validates_numericality_of :price, greater_than: 0
 end
