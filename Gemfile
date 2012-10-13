@@ -5,7 +5,19 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
+gem "haml", ">= 3.0.0"
+gem "haml-rails"
+gem "jquery-rails"
+gem "bson_ext"
+gem "mongoid"
+gem "omniauth", "~> 0.2.0"
+gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
+gem 'faker'
+gem 'mongoid-paperclip', :require => "mongoid_paperclip" 
+gem 'geocoder'
+gem 'factory_girl_rails'
+gem 'kaminari'
+gem 'rmagick'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,8 +30,6 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
-
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -36,15 +46,3 @@ end
 # To use debugger
 # gem 'debugger'
 
-gem "haml", ">= 3.0.0"
-gem "haml-rails"
-gem "jquery-rails"
-gem "bson_ext"
-gem "mongoid"
-gem "omniauth", "~> 0.2.0"
-gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
-gem 'faker'
-gem 'mongoid-paperclip', :require => "mongoid_paperclip" 
-gem 'geocoder'
-gem 'factory_girl_rails'
-gem 'kaminari'
