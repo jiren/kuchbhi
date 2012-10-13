@@ -1,6 +1,6 @@
 Kuchbhi::Application.routes.draw do
 
-  devise_for :users#, :controllers => { :registrations => "registrations"}
+  #devise_for :users#, :controllers => { :registrations => "registrations"}
 
   #match '/auth/:provider/callback', :to => 'sessions#callback'
   match '/auth/:provider/callback', :to => "authentications#create"
