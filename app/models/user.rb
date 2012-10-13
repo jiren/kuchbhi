@@ -8,4 +8,6 @@ class User
   field :phone_number, type: String
 
   has_many :classifieds
+
+  validates :name, :email, presence: true
 end

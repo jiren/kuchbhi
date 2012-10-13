@@ -1,9 +1,11 @@
 class Address
   include Mongoid::Document
 
-  field :street_1, type: String
-  field :street_2, type: String
-  field :city, type: String
-  field :state, type: String
-  field :pin_code, type: String
+  field :address, type: String
+  field :locality, type: String
+  field :country, type: String
+  field :lat, type: Float 
+  field :lng, type: Float
+
+  validates :address, :locality, :country, :lat, :lng, presence: true
 end
