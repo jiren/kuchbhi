@@ -1,0 +1,61 @@
+- model_class = @ad.class
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human
+
+%p
+  %strong= model_class.human_attribute_name(:_type) + ':'
+  %br
+  = @ad._type
+%p
+  %strong= model_class.human_attribute_name(:_id) + ':'
+  %br
+  = @ad._id
+%p
+  %strong= model_class.human_attribute_name(:description) + ':'
+  %br
+  = @ad.description
+%p
+  %strong= model_class.human_attribute_name(:price) + ':'
+  %br
+  = @ad.price
+%p
+  %strong= model_class.human_attribute_name(:hits) + ':'
+  %br
+  = @ad.hits
+%p
+  %strong= model_class.human_attribute_name(:published) + ':'
+  %br
+  = @ad.published
+%p
+  %strong= model_class.human_attribute_name(:address) + ':'
+  %br
+  = @ad.address
+%p
+  %strong= model_class.human_attribute_name(:locality) + ':'
+  %br
+  = @ad.locality
+%p
+  %strong= model_class.human_attribute_name(:country) + ':'
+  %br
+  = @ad.country
+%p
+  %strong= model_class.human_attribute_name(:lat) + ':'
+  %br
+  = @ad.lat
+%p
+  %strong= model_class.human_attribute_name(:lng) + ':'
+  %br
+  = @ad.lng
+%p
+  %strong= model_class.human_attribute_name(:category_id) + ':'
+  %br
+  = @ad.category_id
+%p
+  %strong= model_class.human_attribute_name(:user_id) + ':'
+  %br
+  = @ad.user_id
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), ads_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_ad_path(@ad), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), ad_path(@ad), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'

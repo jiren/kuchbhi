@@ -19,6 +19,6 @@ class Ad
   has_many :tags, autosave: true
   has_many :views, class_name: 'Viewer', dependent: :destroy
 
-  validates :description, :price, :user, :category, presence: true
+  validates :description, :price, :category, presence: true
   validates_numericality_of :price, greater_than: 0
 end

@@ -1,4 +1,8 @@
 class AdsController < ApplicationController
+  include Rails3JQueryAutocomplete::Orm::Mongoid
+
+  autocomplete :category, :name
+
   def index
     @ads = Ad.all
   end

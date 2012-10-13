@@ -3,6 +3,9 @@ Kuchbhi::Application.routes.draw do
   #devise_for :users#, :controllers => { :registrations => "registrations"}
 
   #match '/auth/:provider/callback', :to => 'sessions#callback'
+  resources :ads do
+    get :autocomplete_category_name, :on => :collection
+  end
   match '/auth/:provider/callback', :to => "authentications#create"
   match '/auth/failure', :to => "authentications#failure"
 

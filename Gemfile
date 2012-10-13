@@ -9,9 +9,14 @@ gem "devise"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "jquery-rails"
+gem "address_picker-rails"
+gem "jquery-ui-themes"
+gem 'rails3-jquery-autocomplete', '1.0.9'
+gem "twitter_bootstrap_form_for"
 gem "bson_ext"
 gem "mongoid"
 gem "omniauth"
+gem "oa-openid"
 gem 'faker'
 gem 'mongoid-paperclip', :require => "mongoid_paperclip" 
 gem 'geocoder'
