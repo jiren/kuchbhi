@@ -11,13 +11,15 @@ gem "jquery-rails"
 gem "bson_ext"
 gem "mongoid"
 gem "omniauth", "~> 0.2.0"
-gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
 gem 'faker'
 gem 'mongoid-paperclip', :require => "mongoid_paperclip" 
 gem 'geocoder'
 gem 'factory_girl_rails'
 gem 'kaminari'
 gem 'rmagick'
+gem 'mongoid_search'
+gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
+gem "mongoid-rspec", :group => [:development, :test]
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -45,21 +47,3 @@ end
 
 # To use debugger
 # gem 'debugger'
-
-<<<<<<< HEAD
-gem "haml", ">= 3.0.0"
-gem "haml-rails"
-gem "jquery-rails"
-gem "bson_ext"
-gem "mongoid"
-gem "omniauth", "~> 0.2.0"
-gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
-gem "mongoid-rspec", :group => [:development, :test]
-gem 'faker'
-gem 'mongoid-paperclip', :require => "mongoid_paperclip" 
-gem 'geocoder'
-gem 'factory_girl_rails'
-gem 'kaminari'
-gem 'mongoid-search'
-=======
->>>>>>> 9c3e6c52ba2dedd0747537be38cd8c1648b1ae26
