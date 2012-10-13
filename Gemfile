@@ -19,7 +19,7 @@ gem 'kaminari'
 gem 'rmagick'
 gem 'mongoid_search'
 gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
-gem "mongoid-rspec", :group => [:development, :test]
+gem "mongoid-rspec", '1.5.4', :group => [:development, :test]
 
 # Gems used only for assets and not required
 # in production environments by default.
