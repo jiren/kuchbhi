@@ -6,5 +6,7 @@ class Image
     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
     :url => "/system/:attachment/:id/:style/:filename"
 
+  belongs_to :ad
+
   field :name, type: String
 end

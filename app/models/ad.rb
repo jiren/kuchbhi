@@ -4,6 +4,7 @@ class Ad
   field :description, type: String
   field :price, type: Float
   field :hits, type: Integer
+  field :published, type: Boolean, default: false
 
   field :address, type: String
   field :locality, type: String
@@ -14,8 +15,8 @@ class Ad
   belongs_to :category
   belongs_to :user
 
-  has_many :images, dependent: :destroy
-  has_many :tags
+  has_many :images, autosave: true, dependent: :destroy
+  has_many :tags, autosave: true
   has_many :views, class_name: 'Viewer', dependent: :destroy
 
   validates :description, :price, :user, :category, presence: true
