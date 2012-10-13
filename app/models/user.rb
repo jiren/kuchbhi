@@ -6,4 +6,6 @@ class User
   field :twitter, type: String
   field :facebook, type: String
   field :phone_number, type: String
+
+  has_many :classifieds
 end
