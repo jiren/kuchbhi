@@ -6,6 +6,8 @@ Kuchbhi::Application.routes.draw do
   match '/auth/:provider/callback', :to => "authentications#create"
   match '/auth/failure', :to => "authentications#failure"
 
+  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

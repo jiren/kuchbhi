@@ -11,6 +11,7 @@ class User
   field :encrypted_password, :type => String, :default => ""
   field :name, type: String
   field :phone_number, type: String
+  field :address, type: String
 
   ## Recoverable
   field :reset_password_token,   :type => String
@@ -25,8 +26,6 @@ class User
   field :last_sign_in_at,    :type => Time
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
-
-  validates :name, :email, :encrypted_password, presence: true
 
   ## Confirmable
   # field :confirmation_token,   :type => String
@@ -43,9 +42,9 @@ class User
   # field :authentication_token, :type => String
 
   has_many :classifieds
-
-  #references_many :authentications, :autosave => true
   has_many :authentications, :autosave => true
+  has_many :ads, dependent: :destroy
+  has_many :ad_views, class_name: 'Viewer', dependent: :destroy
 
   def apply_omniauth(omniauth)
     self.email = omniauth['user_info']['email'] if email.blank?
@@ -58,4 +57,6 @@ class User
     (authentications.empty? || !password.blank?) && super
   end
 
+  validates :name, :email, :encrypted_password, presence: true
+  validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 end
