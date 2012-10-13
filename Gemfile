@@ -43,8 +43,10 @@ gem "bson_ext"
 gem "mongoid"
 gem "omniauth", "~> 0.2.0"
 gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
+gem "mongoid-rspec", :group => [:development, :test]
 gem 'faker'
 gem 'mongoid-paperclip', :require => "mongoid_paperclip" 
 gem 'geocoder'
 gem 'factory_girl_rails'
 gem 'kaminari'
+gem 'mongoid-search'
