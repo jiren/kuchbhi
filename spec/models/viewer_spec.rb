@@ -1,5 +1,9 @@
 require 'spec_helper'
 
-describe ClassifiedViewer do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Viewer do
+  it { should validate_presence_of(:user) }
+  it { should validate_presence_of(:ad) }
+
+  it { should belong_to(:user) }
+  it { should belong_to(:ad) }
 end
