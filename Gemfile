@@ -5,12 +5,15 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem "devise"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "jquery-rails"
 gem "bson_ext"
 gem "mongoid"
-gem "omniauth", "~> 0.2.0"
+#gem "omniauth"#, "~> 0.2.0"
+gem "omniauth", "1.0.1"
+gem "oa-openid"
 gem 'faker'
 gem 'mongoid-paperclip', :require => "mongoid_paperclip" 
 gem 'geocoder'

@@ -28,4 +28,7 @@ Kuchbhi::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  ENV['FACEBOOK_KEY'] = "360716800681253"
+  ENV['FACEBOOK_SECRET'] = "426070afa04830855a64b0511f9ecb2f"
+
 end
