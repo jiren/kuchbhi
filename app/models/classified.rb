@@ -9,4 +9,6 @@ class Classified
   has_many :images
   has_many :tags
   has_one :address
+
+  validates :description, :price, presence: true
 end
