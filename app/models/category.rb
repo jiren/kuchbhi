@@ -3,5 +3,5 @@ class Category
 
   field :name, type: String
 
-  has_many :classifieds
+  has_many :ads
 end

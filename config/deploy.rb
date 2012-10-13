@@ -12,7 +12,7 @@ require 'mina/git'
 
 set :domain, '72.14.176.170'
 set :user, 'root'
-set :deploy_to, '/root/kuchbhi'
+set :deploy_to, '/var/www/kuchbhi'
 set :repository, 'git@github.com:railsrumble/r12-team-40.git'
 set :branch, 'master'
 

@@ -6,8 +6,10 @@ class User
   field :twitter, type: String
   field :facebook, type: String
   field :phone_number, type: String
+  field :address, type: String
 
-  has_many :classifieds
+  has_many :ads
+  has_many :ad_views, :class_name => 'Viewer'
 
   validates :name, :email, presence: true
 end
