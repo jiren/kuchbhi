@@ -1,3 +1,4 @@
+-@_user = User.where(:id => @user.id).first
 %div{:class=>"modal hide fade", :id => "#{@user.id}", :style => 'width:620px;'}
   .modal-header
     %a{:class=>"close", :href=>"javascript:void(0)"}×
@@ -5,7 +6,7 @@
   = form_for @user, :remote => true do |user|
     .modal-body
       = user.text_field :name, :label => 'Name *', :required => :required
-      - if @user.email
+      - if @_user.email
         = user.email_field :email, :readOnly => true
       - else
         = user.email_field :email
