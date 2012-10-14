@@ -4,7 +4,7 @@
     %h3 Edit Profile 
   = form_for @user, :remote => true do |user|
     .modal-body
-      = user.text_field :name, :label => 'Name *'
+      = user.text_field :name, :label => 'Name *', :required => :required
       - if @user.email
         = user.email_field :email, :readOnly => true
       - else
