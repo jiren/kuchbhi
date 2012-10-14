@@ -37,11 +37,6 @@
         %span
           = #f.autocomplete_field :category, autocomplete_category_name_ads_path, :name => 'ad[category]', :class => 'input-xlarge', :placeholder => 'Category'
           = select_tag "Category", options_from_collection_for_select(Category.all, "id", "name"), :name => 'ad[category]',:prompt => "Select something", :class => 'input-xlarge'
-  .control-group
-    .controls
-      %li.icon-user.icon-large
-        %span
-          = f.text_field :user_id, :class => 'text_field input-xlarge', :placeholder => 'User'
   .address-picker-map-wrapper#ad_address_map_wrapper
     .address-picker-legend
     .address-picker-map#map

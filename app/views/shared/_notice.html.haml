@@ -1,0 +1,12 @@
+- if flash[:notice]
+  .alert.alert-success
+    = flash[:notice] 
+    %button.close{:type => 'button', 'data-dismiss' => 'alert'}x
+- elsif flash[:error]
+  .alert.alert-error
+    = flash[:error]
+    %button.close{:type => 'button', 'data-dismiss' => 'alert'}x
+- elsif flash[:info]
+  .alert.alert-info
+    = flash[:info]
+    %button.close{:type => 'button', 'data-dismiss' => 'alert'}x

@@ -27,3 +27,6 @@ $('.close, .cancel').live('click', function(){
   $('.modal').remove();
   $('.modal-backdrop').remove();
 });
+$('.alert-close').live('click', function(){
+  $('.alert').fadeOut('slow');
+});

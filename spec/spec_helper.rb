@@ -48,3 +48,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
+
+def sign_in(user)
+  @controller.stub(:current_user).and_return(user)
+end

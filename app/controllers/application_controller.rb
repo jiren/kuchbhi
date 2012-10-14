@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     unless current_user
       flash[:error] = 'You need to sign in before accessing this page!'
-      redirect_to signin_path
+      redirect_to root_url 
     end
   end
 
