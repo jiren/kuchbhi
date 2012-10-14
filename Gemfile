@@ -19,18 +19,20 @@ gem "omniauth", '1.1.0'
 gem 'oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem 'faker'
 gem 'mongoid-paperclip', :require => "mongoid_paperclip" 
 gem 'geocoder'
-gem 'factory_girl_rails'
 gem 'kaminari'
 gem 'rmagick'
 gem 'mongoid_search'
 gem 'hashie'
 
-gem "rspec-rails", ">= 2.0.1", :group => [:test]
-gem "mongoid-rspec", '1.5.4', :group => [:test]
-gem 'database_cleaner', :group => [:test]
+group :test do
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem "rspec-rails", ">= 2.0.1"
+  gem "mongoid-rspec", '1.5.4'
+  gem 'database_cleaner'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
