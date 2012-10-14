@@ -15,17 +15,47 @@ class AdsController < ApplicationController
   end
 
   def edit
-    @ad = Ad.find(params[:id])
+    @ad = @ads.find(params[:id])
+
+    image_count = if @ad.images.count == 0
+                    2
+                  elsif @ad.images.count == 1
+                    1
+                  else
+                    0
+                  end
+    
+
+     image_count.times { @ad.images.build }
   end
 
   def create
-    @ad = Ad.new(params[:ad])
-    @ad.save
+    @ad = current_user.ads.new(params[:ad])
+    @ad.phone_number ||= current_user.phone_number
+    @ad.address ||= current_user.address
+
+    respond_to do |format|
+      if @ad.save
+        format.html { redirect_to ads_path, notice: 'Ad was successfully created.' }
+      else
+        format.html { render action: "new" }
+      end
+    end
   end
 
   def update
-    @ad = Ad.find(params[:id])
-    @ad.update_attributes(params[:ad])
+    p params
+    p "*"*40  
+    @ad = current_user.ads.find(params[:id])
+    @ad.attributes = params[:ad]
+
+    respond_to do |format|
+      if @ad.save!
+        format.html { redirect_to ads_path, notice: 'Ad was successfully updated.' }
+      else
+        format.html { render action: "edit" }
+      end
+    end
   end
 
   def publish

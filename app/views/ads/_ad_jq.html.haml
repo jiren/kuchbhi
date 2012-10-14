@@ -1,0 +1,41 @@
+.row.ad
+  .span8
+    %p
+      %span.sep Posted on
+      %a{:href => "#"}
+        {{ad.created_at}}
+    %p 
+      = {{ad.description}}
+    %p 
+      %h4 
+        %i.icon-tag
+        Price : 
+        {{ad.price}}
+    %span.address
+      %i.icon-home
+      {{ad.address}}
+  - ad.images.limit(2).each do |i|
+    .span2
+      %a{:href => i.image.url}
+        %img.ad-image.img-polaroid{:src => i.image.url(:small)}/
+.row.contact
+  .span12
+    - if ad.user.phone_number
+      %a.btn.disabled{:href => '#'}
+        %i.icon-phone
+        = ad.user.phone_number
+    - if ad.user.email
+      %a.btn.disabled{:href => '#'}
+        %i.icon-envelope
+        = ad.user.email
+      %a.pull-right.btn{:href => '#'}
+        %i.icon-envelope-alt
+        Send Message
+      %a.pull-right.btn{:href => '#'}
+        %i.icon-bookmark
+        Interested
+      %a.pull-right.btn.map-it{:href => '#', :rel => 'tooltip', :title => 'Map It', :data => {:id => ad.id}}
+        %i.icon-map-marker
+
+%hr/
+

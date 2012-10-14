@@ -1,23 +1,20 @@
-%div{:class=>"modal hide fade", :id => "#{@ad.id}", :style => 'width:580px;'}
-  .modal-header
-    %a{:class=>"close", :href=>"javascript:void(0)"}×
-    %h3 New Ad
-  = form_for @ad, :remote => true, :html => { :multipart => true} do |f|
-    .modal-body
-      = f.text_area :description, :class => 'text_area input-xlarge', :rows => 3, :label => 'Description *', :required => :required
-      = f.text_field :price, :class => 'text_field input-xlarge', :label => 'Price', :required => :required
-      = f.fields_for :images do |images_form|    
-        = images_form.file_field :image
-      = f.text_field :tag_list, :label => 'Tags', :class => 'text_area input-xlarge'
-      = f.text_field :address, :class => 'text_field input-xlarge', :label => 'Address'
-      = hidden_field_tag 'locality',nil, :name => 'ad[locality]',:class => ''
-      = hidden_field_tag 'country', nil, :name => 'ad[country]', :class => ''
-      = hidden_field_tag 'lat', nil, :name => 'ad[lat]', :class => ''
-      = hidden_field_tag 'lng', nil, :name => 'ad[lng]', :class => ''
-      = f.select :category, Category.all.collect {|c| [c.name, c.id]},{:include_blank => true}, {:class => 'input-xlarge'}
-      .address-picker-map-wrapper#ad_address_map_wrapper
-        .address-picker-legend
-        .address-picker-map#map
-      .modal-footer
-        = f.submit nil, :class => 'btn btn-primary'
-        = link_to t('.cancel', :default => t("helpers.links.cancel")), ads_path, :class => 'btn'
+= form_for @ad do |f|
+  %legend= legend
+  = f.text_area :description, :rows => 3, :label => 'Description *'
+  = f.text_field :price, :placeholder => '100.10'
+  = f.select :category, Category.all.collect {|c| [c.name, c.id]}
+  = f.text_field :tag_list, :label => 'Tags', :placeholder => 'tag1, tag2, tag3'
+  = f.text_field :phone_number, :placeholder => '1 (971) 121-5123'
+  = f.text_field :address, :label => 'Address', :placeholder => 'Street 1, XYZ'
+  = f.hidden_field :locality
+  = f.hidden_field :country
+  = f.hidden_field :lat
+  = f.hidden_field :lng
+  = f.fields_for :images do |i|    
+    = i.file_field :image
+  .address-picker-map-wrapper#ad_address_map_wrapper
+    .address-picker-legend
+    .address-picker-map#map
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    %a{:href => '#', :class => 'btn cancel'} Cancel
