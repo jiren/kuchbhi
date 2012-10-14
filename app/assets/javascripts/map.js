@@ -1,16 +1,31 @@
 jQuery(document).ready(function($) {
-  googleMap.init()
+  
+    /*
+  if(this.ads){
+    this.center_lat = this.ads[0].lat;
+    this.center_lng = this.ads[0].lng;
+  }
+
+  googleMap.init(this.center_lat || 37.4419, this.center_lng || -122.1419)
+  */
+
 })
 
 var googleMap = {
 
-  center_lat_lng: [37.4419, -122.1419],
   map: null,
   markers: {},
+  center_lng: 37.4419,
+  center_lat: -122.1419,
 
-  init: function(){
+  init: function(ads){
+    if(ads){
+      var center_lat = ads[0].lat || 37.4419;
+      var center_lng = ads[0].lng || -122.1419; 
+    }
+
     var options = {
-      center: new google.maps.LatLng(this.center_lat_lng[0], this.center_lat_lng[1]),
+      center: new google.maps.LatLng(center_lat, center_lng),
       zoom: 13,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -22,6 +37,11 @@ var googleMap = {
     this.infowindow = new google.maps.InfoWindow({
         size: new google.maps.Size(50,50)
     });
+
+    var that = this;
+    $.each(ads || [], function(){
+      that.addMarker(this);
+    });
   },
 
   addMarker: function(ad){
@@ -29,11 +49,11 @@ var googleMap = {
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(ad.lat, ad.lng),
       map: this.map,
-      title: ad.title
+      title: ad.description
     });
 
-    marker.info_window_content = ad.title + '<br/> Price: ' + ad.amount
-    this.markers[ad.id] = marker
+    marker.info_window_content = 'Category: ' + ad.category.name + '<br/>' + ad.address + '<br/> Price: ' + ad.price;
+    this.markers[ad._id] = marker
 
     google.maps.event.addListener(marker, 'click', function() {
       that.infowindow.setContent(marker.info_window_content)
@@ -51,7 +71,7 @@ var googleMap = {
     var google_map = this;
     $.each(google_map.markers, function(){ this.setMap(null); })
     $.each(filtering_result, function(){
-      google_map.markers[this.id].setMap(google_map.map);
+      google_map.markers[this._id].setMap(google_map.map);
     });
   }
 

@@ -1,41 +1,40 @@
 - if @ads.any?
-  - @ads.each do |ad|
-    .row.ad
-      .span8
-        %p
-          %span.sep Posted on
-          %a{:href => "#", :title => "8:12 pm"}
-            = ad.created_at.strftime('%B %d, %Y')
-        %p 
-          = ad.description
-        %p 
-          %h4 
-            %i.icon-filter
-            Category :
-            = ad.category.name
-            %i.icon-tag
-            Price : 
-            = ad.price
-        %span
-          %b
-            %i.icon-filter
-            Category :
-            = ad.category.name
-          %br
-        %span.address
-          %i.icon-home
-          = ad.address
-      - ad.images.limit(2).each do |i|
-        .span2
-          %a{:href => i.image.url}
-            %img.ad-image.img-polaroid{:src => i.image.url(:small)}/
-      .row.contact
-        .span6
-          = link_to 'Edit', edit_ad_path(ad), :class => 'btn btn-primary'
-          - unless ad.published
-            = link_to 'Publish', publish_ad_path(ad), :method => :put, :class => 'btn btn-primary'
-          = link_to 'Remove', ad_path(ad), :method => :delete, :class => 'btn btn-warning'
-    %hr/
+  = render :partial => 'ads/admin_ad', :collection => @ads, :as => :ad 
+  - model_class = Ad.new.class
+  .page-header
+    %h1=t '.title', :default => model_class.model_name.human.pluralize
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= model_class.human_attribute_name(:description)
+        %th= model_class.human_attribute_name(:price)
+        %th= model_class.human_attribute_name(:address)
+        %th= model_class.human_attribute_name(:locality)
+        %th= model_class.human_attribute_name(:country)
+        %th= model_class.human_attribute_name(:lat)
+        %th= model_class.human_attribute_name(:lng)
+        %th= model_class.human_attribute_name(:category_id)
+        %th= model_class.human_attribute_name(:user_id)
+        %th=t '.actions', :default => t("helpers.actions")
+    %tbody
+      - @ads.each do |ad|
+        %tr
+          %td= ad.description
+          %td= ad.price
+          %td= ad.address
+          %td= ad.locality
+          %td= ad.country
+          %td= ad.lat
+          %td= ad.lng
+          %td= ad.category.name
+          %td= ad.user_id
+          %td
+            = link_to t('.edit', :default => t("helpers.links.edit")), edit_ad_path(ad), 'data-remote' => true, :class => 'btn btn-mini'
+            = link_to t('.destroy', :default => t("helpers.links.destroy")), ad_path(ad), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'
+            - unless ad.published
+              = link_to 'Publish Ad', publish_ad_path(ad), :method => :put, :class => 'btn btn-primary'
+
+  = link_to t('.new', :default => t("helpers.links.new")), new_ad_path, :class => 'btn btn-primary'
 - else
   .alert.alert-info
     Ooops!!!Looks like you haven't post any ad. Please post and get best sale.

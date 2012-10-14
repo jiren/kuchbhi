@@ -2,10 +2,12 @@ class Ad
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Search
+
+  attr_accessible :tag_list, :description, :price, :address, :lat, :lng, :category
   
   field :description, type: String
   field :price, type: Float
-  field :hits, type: Integer
+  field :hits, type: Integer, default: 0
   field :published, type: Boolean, default: false
 
   field :address, type: String
@@ -28,4 +30,29 @@ class Ad
 
   search_in :description, :category => :name, :tags => :name
 
+<<<<<<< Updated upstream
+  def as_json(options = {})
+    options ||= {}
+    options ||= {}
+    options[:except] = [:user_id, :updated_at, :_keywords]
+    options[:methods] = [:image_urls, :thumbnail]
+    options[:include] = [:category]
+    super
+  end
+
+  def image_urls
+    self.images.limit(2).collect{|i| [i.image.url(:small), i.image.url]}
+  end
+
+||||||| merged common ancestors
+=======
+  def tag_list
+    self.tags.collect(&:name).join(", ")
+  end
+
+  def tag_list=(new_value)
+    self.tags  = new_value.split(/,\s+/).collect{|i| self.tags.find_or_create_by(:name => i)}
+  end
+
+>>>>>>> Stashed changes
 end

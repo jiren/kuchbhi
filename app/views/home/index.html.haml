@@ -7,9 +7,11 @@
         All
       - Category.all.each do |c|
         %label.checkbox
-          %input{:type => 'checkbox'}
-            = c.name
+          %input.category{:type => 'checkbox', :id => c.id}
+          = c.name
   .ads.span9
     .google-map
       #gmap
     = render :partial => 'ads/ad', :collection => @ads
+:javascript
+  var ads = #{@ads.to_json}

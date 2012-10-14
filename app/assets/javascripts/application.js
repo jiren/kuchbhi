@@ -14,19 +14,62 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require map
-//= require home
 //= require autocomplete-rails
 //= require jquery-ui
 //= require jquery-ui-addresspicker
 //= require jquery_nested_form
+//= require home
 // require_tree .
 
+jQuery(document).ready(function($) {
+  $('.map-it, .top-btn').tooltip({placement: 'bottom'});
 
-$('.map-it, .top-btn').tooltip({placement: 'bottom'});
-$('.close, .cancel').live('click', function(){
-  $('.modal').remove();
-  $('.modal-backdrop').remove();
+  $('#gmap_btn').click(function() {
+    $('#gmap').slideToggle('slow');
+    return false;
+  });
+
+  $('.close, .cancel').live('click', function(){
+    $('.modal').remove();
+    $('.modal-backdrop').remove();
+  });
+
+  $('#all_categories, .category').attr('checked', true);
+  $('#all_categories').click(function(){
+    $('.category').attr('checked', $(this).is(':checked'));
+    Category.filter();
+  });
+
+  $('.category').click(function(){
+    Category.filter();
+  });
+
+  googleMap.init(ads);
+
+  $('.map-it').live('click', function(e){
+    var ad_id = $(this).data('id');
+    var marker = googleMap.markers[ad_id];
+
+    $('#gmap').show();
+    googleMap.infowindow.setContent(marker.info_window_content);
+    googleMap.infowindow.open(googleMap.map, marker);
+    false
+  });
+
+  $('.alert-close').live('click', function(){
+    $('.alert').fadeOut('slow');
+  });
+
 });
-$('.alert-close').live('click', function(){
-  $('.alert').fadeOut('slow');
-});
+
+var Category = {}
+Category.filter = function(){
+  $('.ad').hide();
+
+  $('.category:checked').each(function(){
+    $('.c_' + $(this).attr('id')).show();
+  })
+};
+
+
+

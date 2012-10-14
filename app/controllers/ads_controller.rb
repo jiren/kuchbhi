@@ -2,13 +2,11 @@ class AdsController < ApplicationController
   layout 'ad'
   include Rails3JQueryAutocomplete::Orm::Mongoid
 
-  before_filter :authenticate_user!
-  before_filter :fetch_ads, :except => [:new, :create]
+  before_filter :authenticate_user!, :except =>  [:interested]
+  before_filter :fetch_ads, :except => [:new, :create, :interested]
   autocomplete :category, :name
 
-
-  def show
-    @ad = Ad.find(params[:id])
+  def index
   end
 
   def new
@@ -17,29 +15,17 @@ class AdsController < ApplicationController
   end
 
   def edit
-    @ad = @ads.find(params[:id])
+    @ad = Ad.find(params[:id])
   end
 
   def create
-    @ad = current_user.ads.new(params[:ad])
-    respond_to do |format|
-      if @ad.save
-        format.html { redirect_to ads_path, notice: 'Add was successfully created.' }
-      else
-        format.html { render action: "new" }
-      end
-    end
+    @ad = Ad.new(params[:ad])
+    @ad.save
   end
 
   def update
-    @ad = @ads.find(params[:id])
-    respond_to do |format|
-      if @ad.update_attributes(params[:ad])
-        format.html { redirect_to @ad, notice: 'Add was successfully updated.' }
-      else
-        format.html { render action: "edit" }
-      end
-    end
+    @ad = Ad.find(params[:id])
+    @ad.update_attributes(params[:ad])
   end
 
   def publish
@@ -60,6 +46,19 @@ class AdsController < ApplicationController
       flash[:error] = "Sorry!! can't remove ad"
     end
     redirect_to ads_path
+  end
+
+  def interested
+    @ad = Ad.find(params[:id])
+    
+    if current_user
+      @ad.views.find_or_create_by(:user_id => current_user.id)
+    else
+      @ad.views.create
+    end
+    @ad.inc(:hits, 1)
+
+    render :nothing => true
   end
 
   private
