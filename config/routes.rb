@@ -3,6 +3,7 @@ Kuchbhi::Application.routes.draw do
   match '/twitter/signin' => redirect('/auth/twitter')
   match '/facebook/signin' => redirect('/auth/facebook')
   match '/signout' => 'auth_services#signout'
+  match '/team' => 'static#team'
 
   match '/auth/:service/callback', :to => "auth_services#create"
   match '/auth/failure', :to => "auth_services#failure"
