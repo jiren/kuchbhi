@@ -17,7 +17,7 @@ class Ad
   belongs_to :category
   belongs_to :user
 
-  embeds_many :images
+  has_many :images, autosave: true
   has_many :tags, autosave: true
   has_many :views, class_name: 'Viewer', dependent: :destroy
 

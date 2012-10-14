@@ -9,7 +9,7 @@ class Image
       :small    => ['90x90#',   :jpg],
     }
 
-  embedded_in :ad
+  belongs_to :ad
 
   field :name, type: String
 end
