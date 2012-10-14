@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $('#gmap_btn').click ->
-  $('#gmap').slideToggle(2000);
+  $('#gmap').slideToggle('slow');
   false

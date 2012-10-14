@@ -1,6 +1,7 @@
 class Ad
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Search
   
   field :description, type: String
   field :price, type: Float
@@ -22,4 +23,7 @@ class Ad
 
   validates :description, :price, :category, presence: true
   validates_numericality_of :price, greater_than: 0
+
+  search_in :description, :category => :name, :tags => :name
+
 end

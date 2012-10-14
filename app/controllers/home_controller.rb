@@ -6,8 +6,7 @@ class HomeController < ApplicationController
   end
 
   def search
-    #params[:q]
-    @ads = Ad.limit(5)
+    @ads = Ad.full_text_search(params[:q])
 
     render :index
   end
