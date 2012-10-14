@@ -7,6 +7,10 @@ Kuchbhi::Application.routes.draw do
   match '/auth/:service/callback', :to => "auth_services#create"
   match '/auth/failure', :to => "auth_services#failure"
   
+  resources :ads do
+    get :autocomplete_category_name, :on => :collection
+  end
+
   root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"

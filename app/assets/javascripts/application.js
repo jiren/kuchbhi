@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require map
-//require_tree .
+// require address_picker-rails
+// require autocomplete-rails
+// require_tree .
+
