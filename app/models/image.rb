@@ -6,10 +6,8 @@ class Image
     :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
     :url => "/system/:attachment/:id/:style/:filename",
     :styles => {
-      :small    => ['90x90#',   :jpg],
+      :small    => ['90x90#', :jpg],
     }
 
   belongs_to :ad
-
-  field :name, type: String
 end

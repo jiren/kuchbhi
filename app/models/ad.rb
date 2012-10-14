@@ -2,8 +2,11 @@ class Ad
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Search
+
+  attr_accessible :tag_list, :description, :price, :address, :lat, :lng, :category, :images
   
-  field :description, type: String
+  field :description
+  field :phone_number
   field :price, type: Float
   field :hits, type: Integer, default: 0
   field :published, type: Boolean, default: false
@@ -42,11 +45,13 @@ class Ad
   end
 
   def tag_list
-    self.tags.collect(&:name).join(',')
+    self.tags.collect(&:name).join(", ")
   end
 
   def tag_list=(val)
-    self.tags = val.split(',').collect{|t| self.tags.find_or_create_by(:name => val)}
+    self.tags = val.split(',').collect do |i|
+      self.tags.where(:name => i.strip).first || self.tags.build(:name => i.strip)
+    end
   end
 
 end
