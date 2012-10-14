@@ -1,0 +1,19 @@
+.btn-group
+  %button.btn.btn-inverse.btn-large 
+    %i.icon-user
+  %button.btn.btn-large.dropdown-toggle.btn-inverse{:data => {:toggle => 'dropdown'}}
+    %i.caret
+  %ul.dropdown-menu
+    %li 
+      %a{:href => '#' }
+        %i.icon-briefcase
+        Account
+    %li 
+      %a{:href => '#' }
+        %i.icon-sign-blank
+        My Ads
+    %li.divider
+    %li 
+      %a{:href => signout_path }
+        %i.icon-signout
+        Signout

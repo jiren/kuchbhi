@@ -1,4 +1,4 @@
-jQuery ->
-  $("a[rel=popover]").popover()
-  $(".tooltip").tooltip()
-  $("a[rel=tooltip]").tooltip()
+//= require twitter/bootstrap
+
+$('.dropdown-toggle').dropdown()
+

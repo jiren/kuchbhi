@@ -10,13 +10,15 @@ gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "jquery-rails"
 gem "address_picker-rails"
-gem "jquery-ui-themes"
+#gem "jquery-ui-themes"
 gem 'rails3-jquery-autocomplete', '1.0.9'
 gem "twitter_bootstrap_form_for"
 gem "bson_ext"
 gem "mongoid"
-gem "omniauth"
-gem "oa-openid"
+gem "omniauth", '1.1.0'
+gem 'oauth2'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 gem 'faker'
 gem 'mongoid-paperclip', :require => "mongoid_paperclip" 
 gem 'geocoder'
@@ -24,6 +26,8 @@ gem 'factory_girl_rails'
 gem 'kaminari'
 gem 'rmagick'
 gem 'mongoid_search'
+gem 'hashie'
+
 gem "rspec-rails", ">= 2.0.1", :group => [:test]
 gem "mongoid-rspec", '1.5.4', :group => [:test]
 gem 'database_cleaner', :group => [:test]
@@ -37,7 +41,7 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier'
-  gem 'twitter-bootstrap-rails'
+  gem 'twitter-bootstrap-rails' #, :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
 
 # To use ActiveModel has_secure_password
