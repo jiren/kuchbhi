@@ -3,7 +3,7 @@ class Ad
   include Mongoid::Timestamps
   include Mongoid::Search
 
-  attr_accessible :tag_list, :description, :price, :address, :lat, :lng, :category, :images
+  attr_accessible :tag_list, :description, :price, :address, :lat, :lng, :category, :images, :phone_number
   
   field :description
   field :phone_number
