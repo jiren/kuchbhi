@@ -1,4 +1,3 @@
-source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
@@ -13,6 +12,7 @@ gem "address_picker-rails"
 #gem "jquery-ui-themes"
 gem 'rails3-jquery-autocomplete', '1.0.9'
 gem "twitter_bootstrap_form_for"
+gem "twitter-bootstrap-form-builder"
 gem "bson_ext"
 gem "mongoid"
 gem "omniauth", '1.1.0'
@@ -25,10 +25,10 @@ gem 'kaminari'
 gem 'rmagick'
 gem 'mongoid_search'
 gem 'hashie'
+gem 'faker'
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'faker'
   gem "rspec-rails", ">= 2.0.1"
   gem "mongoid-rspec", '1.5.4'
   gem 'database_cleaner'

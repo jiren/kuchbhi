@@ -4,6 +4,5 @@ FactoryGirl.define do
   factory :user do |u|
     u.sequence(:name) { Faker::Name.first_name }
     u.sequence(:email) { Faker::Internet.email }
-    u.password 'railsrumble'
   end
 end

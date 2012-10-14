@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Ad do
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:price) }
-  it { should validate_presence_of(:user) }
   it { should validate_presence_of(:category) }
   it { should validate_numericality_of(:price).greater_than(0) }
 

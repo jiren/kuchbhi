@@ -3,7 +3,7 @@ class Tag
 
   field :name, type: String
 
-  has_many :ads
+  belongs_to :ad
 
   validates :name, presence: true
 end

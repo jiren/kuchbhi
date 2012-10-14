@@ -72,8 +72,8 @@ categories = Category.all
 address_count = addresses.count
 
 puts "Creating ads....."
-100.times do 
-  user = User.create(name: Faker::Name.first_name, email: Faker::Internet.email)
+20.times do 
+  user = User.create(name: Faker::Name.first_name, email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone)
   c = categories[rand(5)]
   address = addresses[rand(address_count)]
 

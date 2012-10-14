@@ -1,0 +1,42 @@
+!!! 5
+%html(lang="en")
+  %head
+    %meta(charset="utf-8")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : "Kuchbhi"
+    = csrf_meta_tags
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = stylesheet_link_tag "application", :media => "all"
+    %link(href="images/favicon.ico" rel="shortcut icon")
+    %link(href="images/apple-touch-icon.png" rel="apple-touch-icon")
+    %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72")
+    %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114")
+  %body
+    .container-narrow
+      = render 'shared/top_nav'
+      = yield
+      .jumbotron
+        %h1 Map
+        %p.lead Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+        %a.btn.btn-large.btn-success{:href => "#"} Sign up today
+      %hr/
+      .row-fluid.marketing
+        .span6
+          %h4 Subheading
+          %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
+          %h4 Subheading
+          %p Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
+          %h4 Subheading
+          %p Maecenas sed diam eget risus varius blandit sit amet non magna.
+        .span6
+          %h4 Subheading
+          %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
+          %h4 Subheading
+          %p Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
+          %h4 Subheading
+          %p Maecenas sed diam eget risus varius blandit sit amet non magna.
+    = render 'shared/footer'
+    = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyC53e3nn0sCx_o-PBiOz8NfKs85a2hMj98&sensor=true"
+    = javascript_include_tag "application"
