@@ -12,6 +12,7 @@ puts "Creating categories ...."
 categories.each {|c| Category.create!(:name => c) }
 puts "Done!!!!!"
 
+unless Rails.env.test?
 addresses = [
   {'address' => "10110 W Hallett Rd, Spokane, WA, 99224", 'locality' => 'Spokane', 'country' => 'United States', 
                                               'lat' => '47.5943644', 'lng' => '-117.45999719999998'}, 
@@ -112,3 +113,4 @@ puts "Creating ads....."
   ad.save
 end
 puts "Done!!!!"
+end
