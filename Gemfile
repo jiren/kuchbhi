@@ -28,7 +28,7 @@ gem 'mongoid_search'
 gem 'hashie'
 gem 'faker'
 gem 'simple_form'
-gem 'nested_form'
+gem "nested_form", :git => 'git://github.com/ryanb/nested_form.git'
 
 group :test do
   gem 'factory_girl_rails'

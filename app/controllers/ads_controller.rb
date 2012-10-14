@@ -33,6 +33,7 @@ class AdsController < ApplicationController
     @ad = current_user.ads.new(params[:ad])
     @ad.phone_number ||= current_user.phone_number
     @ad.address ||= current_user.address
+    @ad.images_attributes = params[:ad][:images_attributes]
 
     respond_to do |format|
       if @ad.save
@@ -44,10 +45,9 @@ class AdsController < ApplicationController
   end
 
   def update
-    p params
-    p "*"*40  
     @ad = current_user.ads.find(params[:id])
     @ad.attributes = params[:ad]
+    @ad.images_attributes = params[:ad][:images_attributes]
 
     respond_to do |format|
       if @ad.save!

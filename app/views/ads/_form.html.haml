@@ -11,7 +11,11 @@
   = f.hidden_field :lat
   = f.hidden_field :lng
   = f.fields_for :images do |i|    
-    = i.file_field :image
+    .image-field
+      = image_tag(i.object.image(:small), :class => 'form-image') unless i.object.image_file_name.nil?
+      /
+        %button.remove-image{:type =>"button", :data => {:dismiss => "alert"}} X
+      = i.file_field :image
   .address-picker-map-wrapper#ad_address_map_wrapper
     .address-picker-legend
     .address-picker-map#map
