@@ -19,6 +19,11 @@
       %span.label.label-info
         = ad.category.name
     %br
+    - if ad.phone_number
+      %a.btn.disabled{:href => '#'}
+        %i.icon-phone
+        = ad.phone_number
+      %br
     %span.address
       %i.icon-home
       = ad.address

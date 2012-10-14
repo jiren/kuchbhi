@@ -20,6 +20,9 @@ class AdsController < ApplicationController
 
   def create
     @ad = current_user.ads.new(params[:ad])
+    @ad.phone_number ||= current_user.phone_number
+    @ad.address ||= current_user.address
+
     respond_to do |format|
       if @ad.save
         format.html { redirect_to ads_path, notice: 'Add was successfully created.' }

@@ -41,4 +41,12 @@ class Ad
     self.images.limit(2).collect{|i| [i.image.url(:small), i.image.url]}
   end
 
+  def tag_list
+    self.tags.collect(&:name).join(',')
+  end
+
+  def tag_list=(val)
+    self.tags = val.split(',').collect{|t| self.tags.find_or_create_by(:name => val)}
+  end
+
 end

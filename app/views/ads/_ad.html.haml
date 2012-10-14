@@ -26,10 +26,10 @@
           %img.ad-image.img-polaroid{:src => i.image.url(:small)}/
   .row.contact
     .span12
-      - if ad.user.phone_number
+      - if ad.phone_number
         %a.btn.disabled{:href => '#'}
           %i.icon-phone
-          = ad.user.phone_number
+          = ad.phone_number
       - if ad.user.email
         %a.btn.disabled{:href => '#'}
           %i.icon-envelope
