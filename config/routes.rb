@@ -11,6 +11,8 @@ Kuchbhi::Application.routes.draw do
     get :autocomplete_category_name, :on => :collection
   end
 
+  match '/search', :to => 'home#search', :as => :search
+
   root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"

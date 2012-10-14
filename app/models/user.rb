@@ -22,7 +22,7 @@ class User
                         :image_url => authhash[:image_url])
   end
 
-  validates :name, :email, :encrypted_password, presence: true
+  validates :name, :email, presence: true
   validates :email, uniqueness: true
   validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 end

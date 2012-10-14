@@ -25,10 +25,10 @@ gem 'kaminari'
 gem 'rmagick'
 gem 'mongoid_search'
 gem 'hashie'
+gem 'faker'
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'faker'
   gem "rspec-rails", ">= 2.0.1"
   gem "mongoid-rspec", '1.5.4'
   gem 'database_cleaner'

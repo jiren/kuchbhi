@@ -18,11 +18,7 @@
     .container-narrow
       = render 'shared/top_nav'
       .jumbotron
-        %form.search-ad
-          .input-append
-            %input.span2{:type => 'text', :size => 16} 
-            %button.btn.btn-success{:type => 'button'} Search
-            %button.btn{:type => 'button'} Option
+        = render 'shared/search'
       .row-fluid.marketing
         = yield
     = render 'shared/footer'

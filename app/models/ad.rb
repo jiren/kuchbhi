@@ -1,5 +1,6 @@
 class Ad
   include Mongoid::Document
+  include Mongoid::Timestamps
   
   field :description, type: String
   field :price, type: Float

@@ -14,7 +14,10 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require map
+//= require home
+// require_tree .
 // require address_picker-rails
 // require autocomplete-rails
-// require_tree .
 
+
+$('.map-it, .top-btn').tooltip({placement: 'bottom'});

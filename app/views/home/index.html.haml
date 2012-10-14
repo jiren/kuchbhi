@@ -1,1 +1,15 @@
-#gmap
+.row.main
+  .sidebar.span3
+    %h4 Categories
+    .categories
+      %label.checkbox
+        %input{:type => 'checkbox', :id => 'all_categories'}
+        All
+      - Category.all.each do |c|
+        %label.checkbox
+          %input{:type => 'checkbox'}
+            = c.name
+  .ads.span9
+    .google-map
+      #gmap{:style => 'display: none;'}
+    = render :partial => 'ads/ad', :collection => @ads
