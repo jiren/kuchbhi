@@ -1,0 +1,5 @@
+- if @ads.any?
+  = render :partial => 'ads/ad', :collection => @ads, :as => :ad 
+- else
+  .alert.alert-info
+    Ooops!!!Looks like you haven't show any interested on any ad. 

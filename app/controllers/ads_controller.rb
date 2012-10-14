@@ -3,7 +3,7 @@ class AdsController < ApplicationController
   include Rails3JQueryAutocomplete::Orm::Mongoid
 
   before_filter :authenticate_user!
-  before_filter :fetch_ads, :except => [:new, :create, :interested]
+  before_filter :fetch_ads, :except => [:new, :create, :interested, :interested_ads]
   autocomplete :category, :name
 
   def index
@@ -87,6 +87,10 @@ class AdsController < ApplicationController
       @ad.views.create
     end
     @ad.inc(:hits, 1)
+  end
+
+  def interested_ads
+    @ads = Viewer.where(user: current_user).collect(&:ad)
   end
 
   private

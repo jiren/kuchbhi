@@ -9,7 +9,7 @@ Kuchbhi::Application.routes.draw do
   match '/auth/failure', :to => "auth_services#failure"
   
   resources :users, :only => [:edit, :update]
-  resources :ads do
+  resources :ads, :except => [:show] do
     member do
       put :publish
       get :interested
@@ -18,6 +18,7 @@ Kuchbhi::Application.routes.draw do
   end
 
   match '/search', :to => 'home#search', :as => :search
+  match '/ads/interested' => 'ads#interested_ads'
 
   root :to => 'home#index'
 
