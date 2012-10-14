@@ -19,7 +19,7 @@
       %span.label.label-info
         = ad.category.name
     %br
-    - if ad.phone_number
+    - unless ad.phone_number.blank?
       %a.btn.disabled{:href => '#'}
         %i.icon-phone
         = ad.phone_number

@@ -26,7 +26,7 @@
           %img.ad-image.img-polaroid{:src => i.image.url(:small)}/
   .row.contact
     .span12
-      - if ad.phone_number
+      - unless ad.phone_number.blank?
         %a.btn.disabled{:href => '#'}
           %i.icon-phone
           = ad.phone_number
