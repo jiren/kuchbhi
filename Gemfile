@@ -25,7 +25,13 @@ gem 'kaminari'
 gem 'rmagick'
 gem 'mongoid_search'
 gem 'hashie'
+<<<<<<< Updated upstream
 gem 'faker'
+||||||| merged common ancestors
+=======
+gem 'simple_form'
+gem 'nested_form'
+>>>>>>> Stashed changes
 
 group :test do
   gem 'factory_girl_rails'
