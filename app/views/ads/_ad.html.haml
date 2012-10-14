@@ -7,11 +7,16 @@
           = ad.created_at.strftime('%B %d, %Y')
       %p 
         = ad.description
-      %p 
-        %h4 
-          %i.icon-tag
-          Price : 
-          = ad.price
+      %h4 
+        %i.icon-tag
+        Price : 
+        = ad.price
+      %span
+        %i.icon-filter
+        %strong Category :
+        %span.label.label-info
+          = ad.category.name
+      %br
       %span.address
         %i.icon-home
         = ad.address
@@ -39,4 +44,3 @@
           %i.icon-map-marker
 
   %hr/
-

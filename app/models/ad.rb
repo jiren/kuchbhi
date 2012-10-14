@@ -17,11 +17,13 @@ class Ad
   belongs_to :category
   belongs_to :user
 
-  has_many :images, autosave: true, dependent: :destroy
+  has_many :images, autosave: true
   has_many :tags, autosave: true
   has_many :views, class_name: 'Viewer', dependent: :destroy
 
-  validates :description, :price, :category, presence: true
+  accepts_nested_attributes_for :images, :allow_destroy => true, :reject_if => :all_blank
+
+  validates :description, :price, presence: true
   validates_numericality_of :price, greater_than: 0
 
   search_in :description, :category => :name, :tags => :name

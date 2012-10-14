@@ -9,7 +9,6 @@
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = stylesheet_link_tag "application", :media => "all"
-    = javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
     = javascript_include_tag "application"
     %link(href="images/favicon.ico" rel="shortcut icon")
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon")
@@ -19,8 +18,6 @@
     .container-narrow
       = render 'shared/top_nav'
       #form
-      .jumbotron
-        = render 'shared/search'
       .row-fluid.marketing
         = yield
     = render 'shared/footer'
