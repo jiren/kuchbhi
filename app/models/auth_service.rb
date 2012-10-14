@@ -7,5 +7,5 @@ class AuthService
   field :screen_name
   field :image_url
 
-  belogns_to :user
+  belongs_to :user
 end
