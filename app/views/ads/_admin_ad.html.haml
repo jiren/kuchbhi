@@ -18,12 +18,6 @@
       %strong Category :
       %span.label.label-info
         = ad.category.name
-    %br
-    - unless ad.phone_number.blank?
-      %a.btn.disabled{:href => '#'}
-        %i.icon-phone
-        = ad.phone_number
-      %br
     %span.address
       %i.icon-home
       = ad.address
@@ -37,4 +31,8 @@
       - unless ad.published
         = link_to 'Publish', publish_ad_path(ad), :method => :put, :class => 'btn btn-primary'
       = link_to 'Remove', ad_path(ad), :method => :delete, :class => 'btn btn-warning'
+      - unless ad.phone_number.blank?
+        %a.btn.disabled.pull-right{:href => '#'}
+          %i.icon-phone
+          = ad.phone_number
 %hr/
