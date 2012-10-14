@@ -79,7 +79,8 @@ puts "Creating ads....."
 
   ad = Ad.new(description: Faker::Lorem.paragraph, price: rand(1000000), user: user, category: c,
            address: address['address'], locality: address['locality'], country: address['country'],
-           lat: address['lat'], lng: address['lng'], published: true)
+           lat: address['lat'], lng: address['lng'], published: true,
+           phone_number: Faker::PhoneNumber.cell_phone)
 
   i = Image.new
   j = Image.new
