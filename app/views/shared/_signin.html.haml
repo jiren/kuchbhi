@@ -1,0 +1,14 @@
+.btn-group
+  %button.btn.btn-inverse.btn-large 
+    %i.icon-signin
+  %button.btn.btn-large.dropdown-toggle.btn-inverse{:data => {:toggle => 'dropdown'}}
+    %span.caret
+  %ul.dropdown-menu
+    %li 
+      %a{:href => facebook_signin_path }
+        %i.icon-facebook
+        Facebook
+    %li 
+      %a{:href => twitter_signin_path } 
+        %i.icon-twitter
+        Twitter

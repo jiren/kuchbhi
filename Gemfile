@@ -11,7 +11,10 @@ gem "haml-rails"
 gem "jquery-rails"
 gem "bson_ext"
 gem "mongoid"
-gem "omniauth"
+gem "omniauth", '1.1.0'
+gem 'oauth2'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 gem 'faker'
 gem 'mongoid-paperclip', :require => "mongoid_paperclip" 
 gem 'geocoder'
