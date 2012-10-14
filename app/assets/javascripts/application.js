@@ -44,8 +44,6 @@ jQuery(document).ready(function($) {
     Category.filter();
   });
 
-  googleMap.init(ads);
-
   $('.map-it').live('click', function(e){
     var ad_id = $(this).data('id');
     var marker = googleMap.markers[ad_id];
@@ -59,7 +57,16 @@ jQuery(document).ready(function($) {
   $('.alert-close').live('click', function(){
     $('.alert').fadeOut('slow');
   });
+ 
+  $('.remove-image').live('click', function(){
+      $(this).parent().remove();
+  });
 
+  if($('#gmap').length){
+    googleMap.init(ads);
+  }else{
+    $('#gmap_btn').hide();
+  }
 });
 
 var Category = {}

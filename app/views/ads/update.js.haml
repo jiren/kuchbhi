@@ -1,6 +1,0 @@
-- if @ad.errors.blank?
-  $('.modal').remove();
-  $('.modal-backdrop').remove();
-- else
-  $('#form').replaceWith("<div id='form'>#{escape_javascript( render 'form')}</div>");
-  $('##{@ad.id}').modal('show')
