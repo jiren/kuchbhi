@@ -18,8 +18,8 @@ class AuthServicesController < ApplicationController
       user = User.where(:email => @authhash[:email]).first || User.new(:email => @authhash[:email])
       user = user.apply_omniauth(@authhash)
 
-      if user.save
-        session[:user_id], session[:service_id] = user.id, user.auth_services.first.id
+      if user.save!
+        session[:user_id], session[:service_id] = user.id, user.auth_services.where(:provider => @authhash[:provider]).first.id
       end
       flash[:notice] = 'Your account has been created and you have been signed in!'
     end

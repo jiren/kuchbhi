@@ -20,9 +20,10 @@ class User
                         :email => omniauth[:email], 
                         :screen_name => omniauth[:screen_name], 
                         :image_url => omniauth[:image_url])
+    self
   end
 
-  validates :name, :email, presence: true
-  validates :email, uniqueness: true
-  validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
+  validates :name, presence: true
+  validates :email, uniqueness: true, allow_blank: true
+  validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/, allow_blank: true
 end
