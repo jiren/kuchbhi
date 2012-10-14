@@ -1,0 +1,6 @@
+- if @user.errors.blank?
+  $('.modal').remove();
+  $('.modal-backdrop').remove();
+- else
+  $('#form').replaceWith("<div id='form'>#{escape_javascript( render 'edit')}</div>");
+  $('##{@user.id}').modal('show')

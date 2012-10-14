@@ -1,0 +1,16 @@
+%div{:class=>"modal hide fade", :id => "#{@user.id}", :style => 'width:620px;'}
+  .modal-header
+    %a{:class=>"close", :href=>"javascript:void(0)"}×
+    %h3 Edit Profile 
+  = form_for @user, :remote => true do |user|
+    .modal-body
+      = user.text_field :name, :label => 'Name *'
+      - if @user.email
+        = user.email_field :email, :readOnly => true
+      - else
+        = user.email_field :email
+      = user.text_field :phone_number
+      = user.text_field :address
+    .modal-footer
+      = user.submit 'Update', :class => 'btn btn-primary'
+      %a{:href => '#', :class => 'btn cancel'} Cancel

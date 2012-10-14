@@ -5,7 +5,7 @@
     %i.caret
   %ul.dropdown-menu
     %li 
-      %a{:href => edit_user_path(current_user) }
+      %a{:href => edit_user_path(current_user), 'data-remote' => true}
         %i.icon-briefcase
         Account
     %li 

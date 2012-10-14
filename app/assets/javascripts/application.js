@@ -18,3 +18,7 @@
 // require autocomplete-rails
 // require_tree .
 
+$('.close, .cancel').live('click', function(){
+  $('.modal').remove();
+  $('.modal-backdrop').remove();
+});

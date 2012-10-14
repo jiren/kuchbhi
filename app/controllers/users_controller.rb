@@ -7,11 +7,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
-      redirect_to edit_user_path(@user)
-      flash[:notice] = "Successfully updated!!!"
-    else
-      render :edit
-    end
+    @user.attributes = params[:user]
+    @user.save
   end
 end
