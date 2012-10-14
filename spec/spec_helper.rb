@@ -37,11 +37,14 @@ RSpec.configure do |config|
   config.order = "random"
   config.include Mongoid::Matchers
   config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation, {:except => %w[categories]}
-    DatabaseCleaner.orm = "mongoid"
+    DatabaseCleaner[:mongoid].strategy = :truncation, {:except => %w[categories]}
   end
 
   config.before(:each) do
-    DatabaseCleaner.clean 
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
   end
 end

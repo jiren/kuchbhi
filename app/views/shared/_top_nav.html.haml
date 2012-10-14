@@ -5,13 +5,6 @@
         = render 'shared/profile_menu'
       - else
         = render 'shared/signin'
-    %li
-      - if user_signed_in?
-        %a{:href => "#"}
-          %i.icon-user
-          Profile
-      - else
-        %a{:href => ''}
   %a.btn.btn-large.btn-inverse.pull-right.post-ad{:href => post_ad_link} 
     %i.icon-edit
     Post Ad

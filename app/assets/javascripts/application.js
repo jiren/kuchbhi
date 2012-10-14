@@ -21,3 +21,7 @@
 
 
 $('.map-it, .top-btn').tooltip({placement: 'bottom'});
+$('.close, .cancel').live('click', function(){
+  $('.modal').remove();
+  $('.modal-backdrop').remove();
+});

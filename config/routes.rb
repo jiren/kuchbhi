@@ -7,7 +7,11 @@ Kuchbhi::Application.routes.draw do
   match '/auth/:service/callback', :to => "auth_services#create"
   match '/auth/failure', :to => "auth_services#failure"
   
+  resources :users, :only => [:edit, :update]
   resources :ads do
+    member do
+      put :publish
+    end
     get :autocomplete_category_name, :on => :collection
   end
 
