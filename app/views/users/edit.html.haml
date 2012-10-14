@@ -1,0 +1,20 @@
+= form_for @user do |user|
+  .control-group
+    .controls
+      = user.text_field :name, :label => 'Name *'
+  .control-group
+    .controls
+      - if @user.email
+        = user.email_field :email, :readOnly => true
+      - else
+        = user.email_field :email
+  .control-group
+    .controls
+      = user.text_field :phone_number
+  .control-group
+    .controls
+      = user.text_field :address
+  .control-group
+    .controls
+      .form-actions
+        = user.submit 'Update', :class => 'btn btn-primary'

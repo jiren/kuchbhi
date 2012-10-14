@@ -13,6 +13,7 @@ gem "address_picker-rails"
 #gem "jquery-ui-themes"
 gem 'rails3-jquery-autocomplete', '1.0.9'
 gem "twitter_bootstrap_form_for"
+gem "twitter-bootstrap-form-builder"
 gem "bson_ext"
 gem "mongoid"
 gem "omniauth", '1.1.0'
