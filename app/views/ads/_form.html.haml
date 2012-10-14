@@ -1,61 +1,23 @@
-= simple_nested_form_for @ad, :html => { :multipart => true, :class => 'form-horizontal' } do |f|
-  - if f.error_notification
-    .alert.alert-error.fade.in
-      %a.close{"data-dismiss" => "alert", :href => "#"} ×
-      %ul
-        - @ad.errors.full_messages.each do |msg|
-          %li= msg
-
-  .control-group.error
-    .controls
-      %li.icon-align-justify.icon-large
-        %span
-          = f.text_area :description, :class => 'text_area input-xlarge', :rows => 3, :placeholder => 'Description'
-  .control-group.error
-    .controls
-      %li.icon-shopping-cart.icon-large
-        %span
-          = f.text_field :price, :class => 'text_field input-xlarge', :placeholder => 'Price'
-  = f.fields_for :images do |images_form|    
-    .control-group.error
-      .controls
-        %li.icon-picture.icon-large
-          %span
-            = images_form.file_field :image
-  .control-group.error
-    .controls
-      %li.icon-map-marker.icon-large
-        %span
-          = text_field_tag 'addresspicker',nil, :name => 'ad[address]', :class => 'address-picker-input input-xlarge', :placeholder => 'Address'
-      = hidden_field_tag 'locality',nil, :name => 'ad[locality]',:class => 'address-picker-locality'
-      = hidden_field_tag 'country', nil, :name => 'ad[country]', :class => 'address-picker-country'
-      = hidden_field_tag 'lat', nil, :name => 'ad[lat]', :class => 'address-picker-latitude'
-      = hidden_field_tag 'lng', nil, :name => 'ad[lng]', :class => 'address-picker-longitude'
-  .control-group.error
-    .controls
-      %li.icon-filter.icon-large
-        %span
-          = #f.autocomplete_field :category, autocomplete_category_name_ads_path, :name => 'ad[category]', :class => 'input-xlarge', :placeholder => 'Category'
-          = select_tag "Category", options_from_collection_for_select(Category.all, "id", "name"), :name => 'ad[category]',:prompt => "Select something", :class => 'input-xlarge'
-  .address-picker-map-wrapper#ad_address_map_wrapper
-    .address-picker-legend
-    .address-picker-map#map
-
-  .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), ads_path, :class => 'btn'
-
-%script{:type => "text/javascript"}
-  :plain
-    var addresspickerMap = $("#addresspicker").addresspicker({
-      elements: {
-        map:      "#map",
-        lat:      "#lat",
-        lng:      "#lng",
-        locality: '#locality',
-        country:  '#country'
-     }
-    });
-    var gmarker = addresspickerMap.addresspicker( "marker");
-    gmarker.setVisible(true);
-    addresspickerMap.addresspicker( "updatePosition");
+%div{:class=>"modal hide fade", :id => "#{@ad.id}", :style => 'width:580px;'}
+  .modal-header
+    %a{:class=>"close", :href=>"javascript:void(0)"}×
+    %h3 New Ad
+  = form_for @ad, :remote => true, :html => { :multipart => true} do |f|
+    .modal-body
+      = f.text_area :description, :class => 'text_area input-xlarge', :rows => 3, :label => 'Description *', :required => :required
+      = f.text_field :price, :class => 'text_field input-xlarge', :label => 'Price', :required => :required
+      = f.fields_for :images do |images_form|    
+        = images_form.file_field :image
+      = f.text_field :tag_list, :label => 'Tags', :class => 'text_area input-xlarge'
+      = f.text_field :address, :class => 'text_field input-xlarge', :label => 'Address'
+      = hidden_field_tag 'locality',nil, :name => 'ad[locality]',:class => ''
+      = hidden_field_tag 'country', nil, :name => 'ad[country]', :class => ''
+      = hidden_field_tag 'lat', nil, :name => 'ad[lat]', :class => ''
+      = hidden_field_tag 'lng', nil, :name => 'ad[lng]', :class => ''
+      = f.select :category, Category.all.collect {|c| [c.name, c.id]},{:include_blank => true}, {:class => 'input-xlarge'}
+      .address-picker-map-wrapper#ad_address_map_wrapper
+        .address-picker-legend
+        .address-picker-map#map
+      .modal-footer
+        = f.submit nil, :class => 'btn btn-primary'
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), ads_path, :class => 'btn'

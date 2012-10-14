@@ -15,29 +15,17 @@ class AdsController < ApplicationController
   end
 
   def edit
-    @ad = @ads.find(params[:id])
+    @ad = Ad.find(params[:id])
   end
 
   def create
-    @ad = current_user.ads.new(params[:ad])
-    respond_to do |format|
-      if @ad.save
-        format.html { redirect_to ads_path, notice: 'Add was successfully created.' }
-      else
-        format.html { render action: "new" }
-      end
-    end
+    @ad = Ad.new(params[:ad])
+    @ad.save
   end
 
   def update
-    @ad = @ads.find(params[:id])
-    respond_to do |format|
-      if @ad.update_attributes(params[:ad])
-        format.html { redirect_to @ad, notice: 'Add was successfully updated.' }
-      else
-        format.html { render action: "edit" }
-      end
-    end
+    @ad = Ad.find(params[:id])
+    @ad.update_attributes(params[:ad])
   end
 
   def publish
