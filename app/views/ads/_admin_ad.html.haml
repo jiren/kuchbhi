@@ -1,0 +1,35 @@
+.row.ad.ad-detail
+  .span8
+    %p
+      %span.sep Posted on
+      %a{:href => "#"}
+        = ad.created_at.strftime('%B %d, %Y')
+      %strong.pull-right
+        Interested :
+        = ad.hits
+    %p 
+      = ad.description
+    %h4 
+      %i.icon-tag
+      Price : 
+      = ad.price
+    %span
+      %i.icon-filter
+      %strong Category :
+      %span.label.label-info
+        = ad.category.name
+    %br
+    %span.address
+      %i.icon-home
+      = ad.address
+  - ad.images.limit(2).each do |i|
+    .span2
+      %a{:href => i.image.url}
+        %img.ad-image.img-polaroid{:src => i.image.url(:small)}/
+  .row.contact
+    .span6
+      = link_to 'Edit', edit_ad_path(ad), :class => 'btn btn-primary'
+      - unless ad.published
+        = link_to 'Publish', publish_ad_path(ad), :method => :put, :class => 'btn btn-primary'
+      = link_to 'Remove', ad_path(ad), :method => :delete, :class => 'btn btn-warning'
+%hr/

@@ -7,11 +7,6 @@ class AdsController < ApplicationController
   autocomplete :category, :name
 
   def index
-    @ads = Ad.all
-  end
-
-  def show
-    @ad = Ad.find(params[:id])
   end
 
   def new
