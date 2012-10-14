@@ -16,10 +16,10 @@ class AuthServicesController < ApplicationController
     else
       # find or create user
       user = User.where(:email => @authhash[:email]).first || User.new(:email => @authhash[:email])
-      user.apply_omniauth(@authhash)
+      user = user.apply_omniauth(@authhash)
 
       if user.save
-        session[:user_id], session[:service_id] = user.id, user.services.first.id
+        session[:user_id], session[:service_id] = user.id, user.auth_services.first.id
       end
       flash[:notice] = 'Your account has been created and you have been signed in!'
     end
@@ -27,6 +27,8 @@ class AuthServicesController < ApplicationController
       reset_session
       flash[:error] = 'There was an error while creating your account from which we were not able to recover.'
     end
+
+    redirect_to root_url
   end
 
   def signout 

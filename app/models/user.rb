@@ -11,18 +11,18 @@ class User
   has_many :auth_services, autosave: true,  dependent: :destroy
 
   def apply_omniauth(omniauth)
-    self.email = omniauth['user_info']['email'] if self.email.blank?
-    self.name = omniauth['user_info']['name']
+    self.email = omniauth[:email] if self.email.blank?
+    self.name = omniauth[:name]
 
-    user.auth_services.build(:provider => @authhash[:provider], 
-                        :uid => authhash[:uid], 
-                        :name => authhash[:name], 
-                        :email => authhash[:email], 
-                        :screen_name => authhash[:screen_name], 
-                        :image_url => authhash[:image_url])
+    self.auth_services.build(:provider => omniauth[:provider],
+                        :uid => omniauth[:uid], 
+                        :name => omniauth[:name], 
+                        :email => omniauth[:email], 
+                        :screen_name => omniauth[:screen_name], 
+                        :image_url => omniauth[:image_url])
   end
 
-  validates :name, :email, :encrypted_password, presence: true
+  validates :name, :email, presence: true
   validates :email, uniqueness: true
   validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 end
