@@ -56,6 +56,10 @@ jQuery(document).ready(function($) {
     false
   });
 
+  $('.alert-close').live('click', function(){
+    $('.alert').fadeOut('slow');
+  });
+
 });
 
 var Category = {}

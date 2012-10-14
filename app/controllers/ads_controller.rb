@@ -2,10 +2,9 @@ class AdsController < ApplicationController
   layout 'ad'
   include Rails3JQueryAutocomplete::Orm::Mongoid
 
-  autocomplete :category, :name
-
   before_filter :authenticate_user!, :except =>  [:interested]
   before_filter :fetch_ads, :except => [:new, :create, :interested]
+  autocomplete :category, :name
 
   def index
     @ads = Ad.all
@@ -25,7 +24,7 @@ class AdsController < ApplicationController
   end
 
   def create
-    @ad = Ad.new(params[:ad])
+    @ad = current_user.ads.new(params[:ad])
     respond_to do |format|
       if @ad.save
         format.html { redirect_to ads_path, notice: 'Add was successfully created.' }
