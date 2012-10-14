@@ -8,6 +8,9 @@ Kuchbhi::Application.routes.draw do
   match '/auth/failure', :to => "auth_services#failure"
   
   resources :ads do
+    member do
+      put :publish
+    end
     get :autocomplete_category_name, :on => :collection
   end
 
