@@ -1,4 +1,5 @@
 class AdsController < ApplicationController
+  layout 'ad'
   include Rails3JQueryAutocomplete::Orm::Mongoid
 
   autocomplete :category, :name
@@ -47,6 +48,16 @@ class AdsController < ApplicationController
       flash[:error] = "Sorry!! can't publish the ad"
     end
     redirect_to ads_path 
+  end
+
+  def destroy
+    @ad = @ads.find(params[:id])
+    if @ad.destroy
+      flash[:notice] = 'Successfully removed!!!'
+    else
+      flash[:error] = "Sorry!! can't remove ad"
+    end
+    redirect_to ads_path
   end
 
   private

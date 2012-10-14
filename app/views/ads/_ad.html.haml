@@ -11,6 +11,12 @@
         %i.icon-tag
         Price : 
         = ad.price
+    %span
+      %b
+        %i.icon-filter
+        Category :
+        = ad.category.name
+      %br
     %span.address
       %i.icon-home
       = ad.address
@@ -36,6 +42,4 @@
         Interested
       %a.pull-right.btn.map-it{:href => '#', :rel => 'tooltip', :title => 'Map It', :data => {:id => ad.id}}
         %i.icon-map-marker
-
 %hr/
-
