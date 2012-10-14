@@ -37,9 +37,20 @@
         %a.pull-right.btn{:href => "mailto:#{ad.user.email}"}
           %i.icon-envelope-alt
           Send Message
-        %a.pull-right.btn{:id => "i_#{ad.id}", :href => interested_ad_path(ad), :data => {:remote => true}}
-          %i.icon-bookmark
-          Interested
+        - if current_user
+          - unless current_user.interested?(ad)
+            %a.pull-right.btn{:id => "i_#{ad.id}", :href => interested_ad_path(ad), :data => {:remote => true}}
+              %i.icon-bookmark
+              Interested
+          - else
+            %a.pull-right.btn.disabled{:href => '#'}
+              %i.icon-bookmark
+              Interested
+        - else
+          %a.pull-right.btn{:id => "i_#{ad.id}", :href => interested_ad_path(ad)}
+            %i.icon-bookmark
+            Interested
+
         %a.pull-right.btn.map-it{:href => '#', :rel => 'tooltip', :title => 'Map It', :data => {:id => ad.id}}
           %i.icon-map-marker
 

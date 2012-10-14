@@ -26,4 +26,12 @@ class User
   validates :name, presence: true
   validates :email, uniqueness: true, allow_blank: true
   validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/, allow_blank: true
+
+  def interested?(ad)
+    if Viewer.where(user: self, ad: ad).first
+      true
+    else
+      false
+    end
+  end
 end

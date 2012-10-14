@@ -2,7 +2,7 @@ class AdsController < ApplicationController
   layout 'ad'
   include Rails3JQueryAutocomplete::Orm::Mongoid
 
-  before_filter :authenticate_user!, :except =>  [:interested]
+  before_filter :authenticate_user!
   before_filter :fetch_ads, :except => [:new, :create, :interested]
   autocomplete :category, :name
 
@@ -57,8 +57,6 @@ class AdsController < ApplicationController
       @ad.views.create
     end
     @ad.inc(:hits, 1)
-
-    render :nothing => true
   end
 
   private
