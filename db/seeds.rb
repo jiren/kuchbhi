@@ -72,15 +72,18 @@ categories = Category.all
 address_count = addresses.count
 
 puts "Creating ads....."
-20.times do 
-  user = User.create(name: Faker::Name.first_name, email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone)
+50.times do 
+  user = User.create!(name: Faker::Name.first_name, email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone)
   c = categories[rand(5)]
   address = addresses[rand(address_count)]
 
-  ad = Ad.new(description: Faker::Lorem.paragraph, price: rand(1000000), user: user, category: c,
+  ad = Ad.new(description: Faker::Lorem.paragraph, price: rand(1000000), 
            address: address['address'], locality: address['locality'], country: address['country'],
            lat: address['lat'], lng: address['lng'], published: true,
            phone_number: Faker::PhoneNumber.cell_phone)
+
+  ad.user = user
+  ad.category = c
 
   i = Image.new
   j = Image.new
