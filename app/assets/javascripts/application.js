@@ -19,9 +19,41 @@
 // require address_picker-rails
 // require autocomplete-rails
 
-
 $('.map-it, .top-btn').tooltip({placement: 'bottom'});
 $('.close, .cancel').live('click', function(){
   $('.modal').remove();
   $('.modal-backdrop').remove();
+});
+
+$('#all_categories, .category').attr('checked', true);
+$('#all_categories').click(function(){
+  $('.category').attr('checked', $(this).is(':checked'));
+  Category.filter();
+});
+
+$('.category').click(function(){
+  Category.filter();
+});
+
+var Category = {}
+Category.filter = function(){
+  $('.ad').hide();
+
+  $('.category:checked').each(function(){
+    console.log($(this))
+    $('.c_' + $(this).attr('id')).show();
+  })
+};
+
+jQuery(document).ready(function($) {
+  googleMap.init(ads);
+});
+
+
+$('.map-it').live('click', function(e){
+  var ad_id = $(this).data('id');
+  var marker = googleMap.markers[ad_id];
+  googleMap.infowindow.setContent(marker.info_window_content);
+  googleMap.infowindow.open(googleMap.map, marker);
+  false
 });

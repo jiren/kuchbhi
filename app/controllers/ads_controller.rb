@@ -3,7 +3,8 @@ class AdsController < ApplicationController
 
   autocomplete :category, :name
 
-  before_filter :fetch_ads, :except => [:new, :create]
+  before_filter :authenticate_user!, :except =>  [:interested]
+  before_filter :fetch_ads, :except => [:new, :create, :interested]
 
   def show
     @ad = @ads.find(params[:id])
@@ -47,6 +48,19 @@ class AdsController < ApplicationController
       flash[:error] = "Sorry!! can't publish the ad"
     end
     redirect_to ads_path 
+  end
+
+  def interested
+    @ad = Ad.find(params[:id])
+    
+    if current_user
+      @ad.views.find_or_create_by(:user_id => current_user.id)
+    else
+      @ad.views.create
+    end
+    @ad.inc(:hits, 1)
+
+    render :nothing => true
   end
 
   private

@@ -11,6 +11,7 @@ Kuchbhi::Application.routes.draw do
   resources :ads do
     member do
       put :publish
+      get :interested
     end
     get :autocomplete_category_name, :on => :collection
   end

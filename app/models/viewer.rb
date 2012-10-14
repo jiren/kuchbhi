@@ -6,5 +6,5 @@ class Viewer
   belongs_to :user
   belongs_to :ad
 
-  validates :user, :ad, presence: true
+  #validates :user, :ad, presence: true
 end
