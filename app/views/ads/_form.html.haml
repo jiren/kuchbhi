@@ -1,36 +1,42 @@
-= form_for @ad, :html => { :class => 'form-horizontal' } do |f|
-  - if @ad.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@ad.errors.count, "error")} prohibited this user from being saved:"
+= simple_nested_form_for @ad, :html => { :multipart => true, :class => 'form-horizontal' } do |f|
+  - if f.error_notification
+    .alert.alert-error.fade.in
+      %a.close{"data-dismiss" => "alert", :href => "#"} ×
       %ul
         - @ad.errors.full_messages.each do |msg|
           %li= msg
 
-  .control-group
+  .control-group.error
     .controls
       %li.icon-align-justify.icon-large
         %span
           = f.text_area :description, :class => 'text_area input-xlarge', :rows => 3, :placeholder => 'Description'
-  .control-group
+  .control-group.error
     .controls
       %li.icon-shopping-cart.icon-large
         %span
           = f.text_field :price, :class => 'text_field input-xlarge', :placeholder => 'Price'
-  .control-group
+  = f.fields_for :images do |images_form|    
+    .control-group.error
+      .controls
+        %li.icon-picture.icon-large
+          %span
+            = images_form.file_field :image
+  .control-group.error
     .controls
       %li.icon-map-marker.icon-large
         %span
-          = f.text_field :address, :class => 'address-picker-input input-xlarge', :placeholder => 'Address'
-      = hidden_field_tag 'ad_address_locality',nil, :name => 'ad[locality]',:class => 'address-picker-locality input-xlarge'
-      = hidden_field_tag 'ad_address_country', nil, :name => 'ad[country]', :class => 'address-picker-country input-xlarge'
-      = hidden_field_tag 'ad_address_latitude', nil, :name => 'ad[lat]', :class => 'address-picker-latitude input-xlarge'
-      = hidden_field_tag 'ad_address_longitude', nil, :name => 'ad[lng]', :class => 'address-picker-longitude input-xlarge'
-  .control-group
+          = text_field_tag 'addresspicker',nil, :name => 'ad[address]', :class => 'address-picker-input input-xlarge', :placeholder => 'Address'
+      = hidden_field_tag 'locality',nil, :name => 'ad[locality]',:class => 'address-picker-locality'
+      = hidden_field_tag 'country', nil, :name => 'ad[country]', :class => 'address-picker-country'
+      = hidden_field_tag 'lat', nil, :name => 'ad[lat]', :class => 'address-picker-latitude'
+      = hidden_field_tag 'lng', nil, :name => 'ad[lng]', :class => 'address-picker-longitude'
+  .control-group.error
     .controls
       %li.icon-filter.icon-large
         %span
-          = f.autocomplete_field :category, autocomplete_category_name_ads_path, :class => 'input-xlarge', :placeholder => 'Category'
-      = #select_tag "Category", options_from_collection_for_select(Category.all, "id", "name"), :name => 'ad[category]',:prompt => "Select something"
+          = #f.autocomplete_field :category, autocomplete_category_name_ads_path, :name => 'ad[category]', :class => 'input-xlarge', :placeholder => 'Category'
+          = select_tag "Category", options_from_collection_for_select(Category.all, "id", "name"), :name => 'ad[category]',:prompt => "Select something", :class => 'input-xlarge'
   .control-group
     .controls
       %li.icon-user.icon-large
@@ -38,7 +44,7 @@
           = f.text_field :user_id, :class => 'text_field input-xlarge', :placeholder => 'User'
   .address-picker-map-wrapper#ad_address_map_wrapper
     .address-picker-legend
-    .address-picker-map#ad_address_map
+    .address-picker-map#map
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
@@ -46,7 +52,15 @@
 
 %script{:type => "text/javascript"}
   :plain
-    var picker = new AddressPickerRails.Picker({idPrefix:"ad_address"});
-    picker.apply(function (railsPicker) {
-      console.debug("callback for a single pond with ID '%s'", railsPicker.getIdPrefix());
+    var addresspickerMap = $("#addresspicker").addresspicker({
+      elements: {
+        map:      "#map",
+        lat:      "#lat",
+        lng:      "#lng",
+        locality: '#locality',
+        country:  '#country'
+     }
     });
+    var gmarker = addresspickerMap.addresspicker( "marker");
+    gmarker.setVisible(true);
+    addresspickerMap.addresspicker( "updatePosition");

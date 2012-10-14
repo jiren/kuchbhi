@@ -1,3 +1,4 @@
+source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
@@ -26,6 +27,8 @@ gem 'rmagick'
 gem 'mongoid_search'
 gem 'hashie'
 gem 'faker'
+gem 'simple_form'
+gem 'nested_form'
 
 group :test do
   gem 'factory_girl_rails'

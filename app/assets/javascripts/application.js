@@ -15,9 +15,11 @@
 //= require bootstrap
 //= require map
 //= require home
+//= require autocomplete-rails
+//= require jquery-ui
+//= require jquery-ui-addresspicker
+//= require jquery_nested_form
 // require_tree .
-// require address_picker-rails
-// require autocomplete-rails
 
 
 $('.map-it, .top-btn').tooltip({placement: 'bottom'});
