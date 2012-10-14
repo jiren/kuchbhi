@@ -4,4 +4,6 @@
 
 == What's Special 
 
-We are using smart search engine in which user can search either description or category of an ad . We also geolocating search results, filtering the search results with beautiful.
+We are using smart search engine in which user can search either description or category of an ad. We also 
+    - geolocating search results
+    - filtering the search results.
