@@ -5,16 +5,12 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem "devise"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "jquery-rails"
 gem "address_picker-rails"
-#gem "jquery-ui-themes"
 gem 'rails3-jquery-autocomplete', '1.0.9'
-gem "twitter_bootstrap_form_for"
 gem "twitter-bootstrap-form-builder"
-gem "bson_ext"
 gem "mongoid"
 gem "omniauth", '1.1.0'
 gem 'oauth2'
@@ -27,7 +23,6 @@ gem 'rmagick'
 gem 'mongoid_search'
 gem 'hashie'
 gem 'faker'
-gem 'simple_form'
 gem "nested_form", :git => 'git://github.com/ryanb/nested_form.git'
 
 group :test do
